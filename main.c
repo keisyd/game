@@ -1,6 +1,7 @@
 #include<stdlib.h>
 #include<stdio.h>
 #include "Matrix_creator.h"
+#include<math.h>
 
 
 int main(){
@@ -33,16 +34,24 @@ int main(){
 	
 	//loop
 
-	int turnos = 0;
+		int turns = 0, condition;
 
-		do{
+		system("clear");
+
+		draw(size,matrix);
+
+		while(verify(zombie, person, size, z, &condition)){
+		
+			move(matrix, zombie, &person,z);
 			system("clear");
 			draw(size,matrix);
-			move(matrix, zombie, &person,z);
-		
-			turnos++;
 
-		}while(1);
+			turns++;
+
+
+	}
+
+	analysis(person, zombie, z, condition);
 
 	return 0;
 }
