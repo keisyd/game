@@ -2,56 +2,64 @@
 #include<stdio.h>
 #include "Matrix_creator.h"
 #include<math.h>
+#include <string.h> //necessário para strcpy
 
 
-int main(){
+int main(int argc, char *argv[]){
 
 	/*Etapa de inicialização e criação da matriz*/
 
-	FILE *conf;
-
-	conf = fopen("config.txt","r");
-
-		if (conf == NULL)
-		{
-			printf("ERRO! O arquivo 'config.txt' de path: nao foi aberto!\n");
-			system("exit");
-		}
 
 
-	int size = 0, z = 0;
+	int size = 0, z = 0,canGo=0;
 
 	char ** matrix;
 	
 	Play person;
+
 	Play *zombie = NULL;
 
-	zombie = initialization(conf, &size, &z);
-
-	matrix = creator(size, conf, zombie, z, &person);
+	zombie = initialization(&size, &z, argv, &canGo, &person);
 	
-	fclose(conf);
+	if(canGo)
+		return 0;
+
+
+
+	matrix = creator(size, zombie, z, &person);	
+	
 	
 	//loop
+	
+		int turns = 2, condition; //turns é 2 para o primeiro ciclo correr bem sem perda de informação ao final do último ciclo, 
+		canGo = 0;
+		//desenho do primeiro ciclo
+		system("clear"); 
 
-		int turns = 0, condition;
+		draw(size,matrix, &turns);
 
-		system("clear");
-
-		draw(size,matrix);
-
-		while(verify(zombie, person, size, z, &condition)){
+		while(verify(zombie, person, size, z, &condition))
+		{
 		
-			move(matrix, zombie, &person,z);
-			system("clear");
-			draw(size,matrix);
+			moveZombie(matrix, zombie, &person, z);//movendo zombies
+			
+			do//escolha uma letra até que alguma letra valida seja escolhida
+			{
+				movePerson(matrix, &person, &canGo);
+				
+				if(canGo)	
+					printf("\nEscolha uma letra valida"); 
+
+			}while(canGo);
+			
+			system("clear"); //limpar a tela
+			
+			draw(size,matrix, &turns); //desenhar a matriz movida
 
 			turns++;
+		}
 
-
-	}
-
-	analysis(person, zombie, z, condition);
-
+	analysis(person, zombie, z, condition, turns);
+	
 	return 0;
 }
