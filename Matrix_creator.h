@@ -8,6 +8,7 @@ typedef struct
     int px, py;	//previous position
     float Distance;
     char PlayerName[20];
+    int moves;
 
 }Play;
 
@@ -15,9 +16,9 @@ Play *initialization(int *size, int *z, char **argv, int *canGo, Play *person);
 char **creator(int size, Play *zombies, int z, Play *person);
 void draw(int size, char **matrix, int *turns);
 void moveZombie(char **matrix, Play *zombie, Play *person, int z);
-void movePerson(char **matrix, Play *person, int *canGo);
-void analysis(Play person, Play *zombie, int z, int condition, int turns);
+void movePerson(char **matrix, Play *person, int *canGo, Play *zombie, int z);
 int verify(Play *zombie, Play person, int size, int z, int *condition);
+void analysis(Play person, Play *zombie, int z, int condition, int turns);
 
 
 #endif // MATRIX_CREATOR_H_INCLUDED
