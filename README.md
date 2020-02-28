@@ -6,7 +6,7 @@ Anything else, report to: keisydanielbarcellos@gmail.com
 THE GAME
 
 This game is a table with free places to go trough ('*'),
-zombies that follows you ('Z') and
+zombies that follow you ('Z') and
 a goal: achieve the wall as faster as you can.
 You can move using aqwedcxz or 47896321 intuitively. 
 
@@ -19,7 +19,7 @@ type the line bellow (never type the $):
 
 $gcc *c -lm
 
-so, I recomend you to, still in the terminal, type 
+so, I recommend you to, still in the terminal, type 
 
 $pwd
 
