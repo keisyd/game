@@ -1,5 +1,5 @@
 # game
-CrazyZombies are a simple C game made by Keisy Daniel Barcellos based on the specifications of my C programming teacher.
+A simple C game of caracters to have fun with pure C implementation
 Feel free to comment and play with the code.
 Anything else, report to: keisydanielbarcellos@gmail.com
 
